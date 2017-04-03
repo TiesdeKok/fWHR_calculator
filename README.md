@@ -13,4 +13,4 @@ For the source code and documentation for the functions see the `FWHR_calculator
 
 ## Thanks
 
-* All the heavy-lifting is done by the `face_recognition` package, make sure to check it out!
+* All the heavy-lifting is done by the [face_recognition](https://github.com/ageitgey/face_recognition) package, make sure to check it out!
