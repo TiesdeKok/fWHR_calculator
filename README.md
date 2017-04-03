@@ -2,9 +2,9 @@
 
 This page contains the code to automatically calculate the fWHR using Python and the `face_recognition` package which is available here: https://github.com/ageitgey/face_recognition
 
-For the source code and documentation for the functions see the `FWHR_calculator` notebook.
+For the source code and documentation for the functions see the `FWHR_calculator` notebook: [FWHR Calculator](https://github.com/TiesdeKok/fWHR_calculator/blob/master/FWHR_calculator.ipynb)
 
-![](http://i.imgur.com/V2BN0C4.png)
+![](https://github.com/TiesdeKok/fWHR_calculator/blob/master/example.png?raw=true)
 
 ## Requirements
 
