@@ -1,5 +1,7 @@
 # Facial width to height ratio (fWHR) calculator
 
+<h3>Just want to calculate the fWHR? Check my web app: <a href="http://www.tiesdekok.com/calculatefwhr">Calculate fWHR</a></h3>
+
 This page contains the code to automatically calculate the fWHR using Python and the `face_recognition` package which is available here: https://github.com/ageitgey/face_recognition
 
 For the source code and documentation for the functions see the `FWHR_calculator` notebook: [FWHR Calculator](https://github.com/TiesdeKok/fWHR_calculator/blob/master/FWHR_calculator.ipynb)
