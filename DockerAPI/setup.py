@@ -3,12 +3,6 @@
 
 from setuptools import setup
 
-with open('README.rst') as readme_file:
-    readme = readme_file.read()
-
-with open('HISTORY.rst') as history_file:
-    history = history_file.read()
-
 requirements = [
     'face_recognition_models',
     'Click>=6.0',
@@ -27,7 +21,7 @@ setup(
     name='face_recognition',
     version='0.1.14',
     description="Recognize faces from Python or from the command line",
-    long_description=readme + '\n\n' + history,
+    long_description="Recognize faces from Python or from the command line",
     author="Adam Geitgey",
     author_email='ageitgey@gmail.com',
     url='https://github.com/ageitgey/face_recognition',

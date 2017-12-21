@@ -6,3 +6,4 @@ Pillow
 scipy>=0.17.0
 Flask
 flask-restful
+flask-cors

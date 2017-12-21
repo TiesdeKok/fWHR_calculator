@@ -1,6 +1,7 @@
 # Imports for API
 from flask import Flask
 from flask_restful import reqparse, abort, Api, Resource
+from flask_cors import CORS, cross_origin
 
 # Imports for FWHR
 import math
@@ -132,7 +133,9 @@ def calculate_fwhr(url, method='average', top='eyelid'):
 app = Flask(__name__)
 api = Api(app)
 
-DEBUG = True
+cors = CORS(app)
+
+DEBUG = False
 
 DEBUG_URL = 'http://mienshiang.com/wp-content/uploads/images-29.jpg'
 
@@ -148,6 +151,9 @@ class get_fwhr(Resource):
 
         if url == None and DEBUG:
             return calculate_fwhr(DEBUG_URL)
+
+        elif url == 'test_service.jpg':
+        	return True
 
         elif url != None:
             try:
@@ -173,3 +179,4 @@ api.add_resource(get_fwhr, '/calculatefwhr')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
+	#app.run(host='localhost', port=8001)
