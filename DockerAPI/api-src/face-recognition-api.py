@@ -12,15 +12,25 @@ from PIL import Image, ImageDraw
 import base64
 from io import BytesIO
 
+import logging
+from logging.handlers import RotatingFileHandler
+
 
 # Business logic
 
+def resize_image(path):
+	img = Image.open(path)
+	img.thumbnail([600,600])
+	img.save(path)
+
 def load_image(path):
-    if path[-3:] == 'jpg' or  path[-3:] == 'peg':
+    if path[-3:].lower() == 'jpg' or  path[-3:].lower() == 'peg':
         urllib.request.urlretrieve(path, 'tmp.jpg')
+        resize_image('tmp.jpg')
         return face_recognition.load_image_file('tmp.jpg')
-    elif path[-3:] == 'png':
+    elif path[-3:].lower() == 'png':
         urllib.request.urlretrieve(path, 'tmp.png')
+        resize_image('tmp.jpg')
         return face_recognition.load_image_file('tmp.png')
     else:
         return "Invalid_Filetype"
@@ -113,7 +123,6 @@ def calculate_fwhr(url, method='average', top='eyelid'):
     image = load_image(url)
     if image == "Invalid_Filetype":
         return "Invalid_Filetype"
-
     landmarks = face_recognition.api._raw_face_landmarks(image)
     landmarks_as_tuples = [(p.x, p.y) for p in landmarks[0].parts()]
     
@@ -157,7 +166,7 @@ class get_fwhr(Resource):
 
         elif url != None:
             try:
-                response = calculate_fwhr(url)
+            	response = calculate_fwhr(url)
             except:
                 abort(404, message="Calculation failed for unknown reasons.")
 
@@ -178,5 +187,17 @@ class get_fwhr(Resource):
 api.add_resource(get_fwhr, '/calculatefwhr')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+	"""
+	# Set up logging
+	logHandler = RotatingFileHandler('info.log', maxBytes=10000, backupCount=1)
+	logHandler.setLevel(logging.INFO)
+	app.logger.setLevel(logging.INFO)
+	app.logger.addHandler(logHandler)
+
+	log = logging.getLogger('werkzeug')
+	log.setLevel(logging.DEBUG)
+	log.addHandler(logHandler)
+	"""
+
+	app.run(host='0.0.0.0', port=80)
 	#app.run(host='localhost', port=8001)
