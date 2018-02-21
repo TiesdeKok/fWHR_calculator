@@ -27,6 +27,8 @@ RUN apt-get install -y --fix-missing \
     zip \
     && apt-get clean && rm -rf /tmp/* /var/tmp/*
 
+RUN ["apt-get", "install", "-y", "nano"]
+
 RUN cd ~ && \
     mkdir -p dlib && \
     git clone -b 'v19.4' --single-branch https://github.com/davisking/dlib.git dlib/ && \
